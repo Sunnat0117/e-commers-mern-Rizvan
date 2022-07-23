@@ -16,7 +16,11 @@ const productRouter = require('./routers/product')
 
 
 // mongodb+srv://Sunnat:<password>@cluster0.xcdqp.mongodb.net/?retryWrites=true&w=majority
-mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.xcdqp.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.xcdqp.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+
+})
 .then(()=>{
     console.log('database connected')
 });
