@@ -15,7 +15,7 @@ exports.signup = (req, res) => {
                 firstName,
                 lastName,
                 email,
-                password
+                password,
             } = req.body
 
             const _user = new User({
@@ -23,7 +23,8 @@ exports.signup = (req, res) => {
                 lastName,
                 email,
                 password,
-                userName: Math.random().toString()
+                userName: Math.random().toString(),
+                role : "user"
             })
 
             _user.save((error, data) => {

@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const { requestSignin, adminMiddleware } = require('../common-middware')
-const {create_Product }=  require('../controllers/product')
+const {createProduct } =  require('../controllers/product')
 const multer  =  require('multer');
 const router =  Router()
 const shortid =  require('shortid')
@@ -11,14 +11,12 @@ const storage = multer.diskStorage({
         cb(null, path.join(path.dirname(__dirname), 'uploads'))
     }, 
     filename: function (req, file, cb) {
-        cb(null, shortid.generate() + '-' + file.originalname)
+        cb(null, shortid.generate() + '-' + file.originalname)  
     }
 })
 
 const upload = multer({ storage })
-
-router.post('/product/create', requestSignin , adminMiddleware, upload.array('productPicture'),  create_Product)
-
+router.post('/product/create', requestSignin , adminMiddleware, upload.array('productPicture'),  createProduct)
 
 
 module.exports = router
